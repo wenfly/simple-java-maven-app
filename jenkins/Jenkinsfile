@@ -1,4 +1,7 @@
 pipeline {
+    agent {
+      image 'registry.joszh.com/docker:19'
+    }
     stages{ 
       stege {
         steps {
