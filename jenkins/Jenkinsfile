@@ -30,5 +30,10 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+        stage('build image') {
+            steps {
+                sh 'docker  build -f docker/Dockerfile --build-arg JAR_FILE=target/my-app.jar  --pull -t regpush.joszh.com/test/my-app:lon_test-0.0.1 .'
+            }    
+        }
     }
 }
