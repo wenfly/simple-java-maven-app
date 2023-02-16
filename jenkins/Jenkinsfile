@@ -2,7 +2,7 @@ pipeline {
     stages{ 
       stege {
         steps {
-          docker version
+          sh 'docker version'
         }
       }
     }
