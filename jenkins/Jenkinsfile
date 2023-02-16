@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-      docker {
-        image 'registry.joszh.com/docker:19'
-      }
-    }
+    agent { none }
     stages{ 
       stage('test') {
         steps {
