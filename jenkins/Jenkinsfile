@@ -6,47 +6,48 @@ pipeline {
         }
       }
     }
-    /* agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
-    options {
-        skipStagesAfterUnstable()
-    }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -v'
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test -Dmaven.test.failure.ignore=true'
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
-        stage('build image') {
-            agent {
-              // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
-              dockerfile {
-              filename 'docker/Dockerfile'
-              //dir 'docker'
-              label 'my-app-label'
-              additionalBuildArgs  '--build-arg version=1.0.2'
-              }
-            }
-        }
-   */ }
 }
+//        agent {
+//        docker {
+//            image 'maven:3-alpine'
+//            args '-v /root/.m2:/root/.m2'
+//        }
+//    }
+//    options {
+//        skipStagesAfterUnstable()
+//    }
+//    stages {
+//        stage('Build') {
+//            steps {
+//                sh 'mvn -v'
+//                sh 'mvn -B -DskipTests clean package'
+//            }
+//        }
+//        stage('Test') {
+//            steps {
+//                sh 'mvn test -Dmaven.test.failure.ignore=true'
+//            }
+//            post {
+//                success {
+//                    junit 'target/surefire-reports/*.xml'
+//                }
+//            }
+//        }
+//        stage('Deliver') {
+//            steps {
+//                sh './jenkins/scripts/deliver.sh'
+//            }
+//        }
+//        stage('build image') {
+//            agent {
+//              // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
+//              dockerfile {
+//              filename 'docker/Dockerfile'
+//              //dir 'docker'
+//              label 'my-app-label'
+//              additionalBuildArgs  '--build-arg version=1.0.2'
+//              }
+//            }
+//        }
+//    }
+//}
