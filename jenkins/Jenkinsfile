@@ -31,8 +31,14 @@ pipeline {
             }
         }
         stage('build image') {
+            agent {
+              docker {
+                image 'registry.joszh.com/docker:19'
+              }
+            }
             steps {
-                docker.build("regpush.joszh.com/test/my-app:lon_test-0.0.1","-f docker/Dockerfile ./')
+                 docker version
+                //docker.build("regpush.joszh.com/test/my-app:lon_test-0.0.1","-f docker/Dockerfile ./')
             }    
         }
     }
