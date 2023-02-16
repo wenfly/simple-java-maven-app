@@ -32,7 +32,7 @@ pipeline {
         }
         stage('build image') {
             steps {
-                sh 'docker  build -f docker/Dockerfile --build-arg JAR_FILE=target/my-app-1.0-SNAPSHOT.jar  --pull -t regpush.joszh.com/test/my-app:lon_test-0.0.1 .'
+                docker.build("regpush.joszh.com/test/my-app:lon_test-0.0.1","-f docker/Dockerfile ./')
             }    
         }
     }
