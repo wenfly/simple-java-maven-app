@@ -32,12 +32,14 @@ pipeline {
         }
         stage('build image') {
             agent {
-              none
+              // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
+              dockerfile {
+              filename 'docker/Dockerfile'
+              //dir 'docker'
+              label 'my-app-label'
+              additionalBuildArgs  '--build-arg version=1.0.2'
+              }
             }
-            steps {
-                 docker version
-                //docker.build("regpush.joszh.com/test/my-app:lon_test-0.0.1","-f docker/Dockerfile ./')
-            }    
         }
     }
 }
