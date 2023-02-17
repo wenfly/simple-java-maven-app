@@ -32,8 +32,8 @@ pipeline {
         }
         stage('build image') {
           agent { 
-            node {
-              label 'master'
+            docker {
+              image 'docker:ding'
             }
           }  
           steps {
