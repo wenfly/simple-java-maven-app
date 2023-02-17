@@ -1,29 +1,23 @@
 pipeline {
-//        agent {
-//        docker {
-//            image 'maven:3-alpine'
-//            args '-v /root/.m2:/root/.m2'
-//        }
-//    }
-    agent { label 'master' }
-    tools { maven  }
+        agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
+    //agent { label 'master' }
     options {
         skipStagesAfterUnstable()
     }
     stages {
         stage('Build') {
-        agent {
-          docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-          }
-        }
             steps {
                 sh 'mvn -v'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
+            agent none
             steps {
                 sh 'docker version'
                 sh 'mvn -v'
@@ -42,11 +36,6 @@ pipeline {
             }
         }
         stage('build image') {
-          agent { 
-            docker {
-              image 'registry.joszh.com/docker:19'
-            }
-          }  
           steps {
                  sh 'mvn -v'
                  sh 'docker version'                        
