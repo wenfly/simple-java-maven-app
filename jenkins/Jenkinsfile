@@ -30,10 +30,7 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-    }
         agent { label 'master' }
-    stages {
-
         stage('build image') {
               steps {
                  sh 'docker version'                        
@@ -41,4 +38,5 @@ pipeline {
               }
         }
     }
+
 }
