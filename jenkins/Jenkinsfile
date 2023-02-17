@@ -25,6 +25,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'docker version'
                 sh 'mvn -v'
                 sh 'mvn test -Dmaven.test.failure.ignore=true'
             }
