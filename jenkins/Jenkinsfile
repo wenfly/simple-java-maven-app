@@ -5,7 +5,8 @@ pipeline {
 //            args '-v /root/.m2:/root/.m2'
 //        }
 //    }
-    agent none
+    agent { label 'master' }
+    //tools { m}
     options {
         skipStagesAfterUnstable()
     }
