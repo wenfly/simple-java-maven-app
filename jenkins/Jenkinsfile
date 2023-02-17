@@ -33,7 +33,7 @@ pipeline {
         stage('build image') {
           agent { 
             docker {
-              image 'docker:20'
+              image 'registry.joszh.com/docker:19'
             }
           }  
           steps {
