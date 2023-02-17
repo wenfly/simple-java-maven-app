@@ -1,10 +1,10 @@
 pipeline {
-//        agent {
-//        docker {
-//            image 'maven:3-alpine'
-//            args '-v /root/.m2:/root/.m2'
-//        }
-//    }
+        agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
     agent none
     options {
         skipStagesAfterUnstable()
@@ -13,7 +13,7 @@ pipeline {
         stage('Build') {
         agent {
           docker {
-            image 'maven:3-alpine'
+            image 'maven:3.8.6'
             args '-v /root/.m2:/root/.m2'
           }
         }
@@ -24,6 +24,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'mvn -v'
                 sh 'mvn test -Dmaven.test.failure.ignore=true'
             }
             post {
@@ -34,6 +35,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                sh 'mvn -v'
                 sh './jenkins/scripts/deliver.sh'
             }
         }
@@ -44,6 +46,7 @@ pipeline {
             }
           }  
           steps {
+                 sh 'mvn -v'
                  sh 'docker version'                        
 
           }
