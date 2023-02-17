@@ -6,7 +6,7 @@ pipeline {
 //        }
 //    }
     agent { label 'master' }
-    tools { maven '3-alpine' }
+    tools { maven  }
     options {
         skipStagesAfterUnstable()
     }
