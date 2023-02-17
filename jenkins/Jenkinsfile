@@ -31,7 +31,10 @@ pipeline {
             }
         }
         stage('build image') {
-          agent { label 'master' }
+          agent { 
+            none
+            label 'master' 
+          }
           steps {
                  sh 'docker version'                        
 
