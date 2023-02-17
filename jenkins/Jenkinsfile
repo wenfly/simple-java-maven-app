@@ -33,7 +33,7 @@ pipeline {
         stage('build image') {
           agent { 
             docker {
-              image 'docker:dind'
+              image 'docker:20'
             }
           }  
           steps {
