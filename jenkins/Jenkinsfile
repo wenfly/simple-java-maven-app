@@ -13,6 +13,30 @@ pipeline {
                 sh 'ls -lh'
             }
         }
+       stage('Build') {
+            steps {
+                sh 'mvn -v'
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+//        stage('Test') {
+//            steps {
+//                //sh 'docker version'
+//                sh 'mvn -v'
+//                sh 'mvn test -Dmaven.test.failure.ignore=true'
+//            }
+//            post {
+//                success {
+//                    junit 'target/surefire-reports/*.xml'
+//                }
+//            }
+//        }
+//        stage('Deliver') {
+//            steps {
+//                sh 'mvn -v'
+//                sh './jenkins/scripts/deliver.sh'
+//            }
+//        }
         stage('Front-end') {
             agent {
                 docker { image 'node:16.13.1-alpine' }
