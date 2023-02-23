@@ -1,42 +1,26 @@
 pipeline {
-        agent { none }
-    //agent { label 'master' }
-    options {
-        skipStagesAfterUnstable()
-    }
-    node ('maven') {
-        stage('Build') {
-            steps {
-                sh 'mvn -v'
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                //sh 'docker version'
-                sh 'mvn -v'
-                sh 'mvn test -Dmaven.test.failure.ignore=true'
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/*.xml'
+    agent none
+    stages {
+        stage('Back-end') {
+            agent {
+                docker {
+                  image 'maven:3-alpine'
+                  args '-v /root/.m2:/root/.m2'
                 }
             }
-        }
-        stage('Deliver') {
             steps {
-                sh 'mvn -v'
-                sh './jenkins/scripts/deliver.sh'
+                sh 'mvn --version'
+                sh 'ls -lh'
             }
         }
-        stage('build image') {
-          agent { node { label 'master'} }
-          steps {
-                 sh 'mvn -v'
-                 sh 'docker version'                        
-
-          }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:16.13.1-alpine' }
+            }
+            steps {
+                sh 'node --version'
+                sh 'ls -lh'
+            }
         }
     }
-
 }
