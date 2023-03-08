@@ -19,7 +19,9 @@ pipeline {
         }  
         stage('Front-end') {
             agent { label 'master' } 
-            options {}
+            options { 
+              timeout(time: 1, unit: 'HOURS')
+            }
                 //docker { 
                   //image 'docker:dind'
                   //image 'node:16.13.1-alpine'
