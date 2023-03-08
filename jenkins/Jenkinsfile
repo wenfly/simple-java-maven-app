@@ -19,16 +19,16 @@ pipeline {
                sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Front-end') {
-            agent {
-                docker { 
-                  image 'node:16.13.1-alpine'
-                }
-            }
-            steps {
-                sh 'node --version'
-                sh 'ls -lh'
-            }
-        }
+        //stage('Front-end') {
+        //    agent {
+        //        docker { 
+        //          image 'node:16.13.1-alpine'
+        //        }
+        //    }
+        //    steps {
+        //        sh 'node --version'
+        //        sh 'ls -lh'
+        //    }
+        //}
     }
 }
