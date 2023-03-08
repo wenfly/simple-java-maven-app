@@ -10,24 +10,29 @@ pipeline {
                 }
             }
             steps {
-                sh 'mvn --version'
+                echo "steps 1"
+                sh 'mvn -v'
                 sh 'ls -lh'
             }
-        }
-       stage('Build') {
-            agent {
-                docker {
-                  image 'maven:3-alpine'
-                  args '-v /root/.m2:/root/.m2'
-                  reuseNode true
-                }
-            }
-
             steps {
-                sh 'mvn -v'
-                sh 'mvn -B -DskipTests clean package'
+                echo "steps 1"
+               sh 'mvn -B -DskipTests clean package'
             }
         }
+//       stage('Build') {
+//            agent {
+//                docker {
+//                  image 'maven:3-alpine'
+//                  args '-v /root/.m2:/root/.m2'
+//                  reuseNode true
+//                }
+//            }
+//
+//            steps {
+//                sh 'mvn -v'
+//                sh 'mvn -B -DskipTests clean package'
+//            }
+//        }
 //        stage('Test') {
 //            steps {
 //                //sh 'docker version'
