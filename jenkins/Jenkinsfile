@@ -18,7 +18,8 @@ pipeline {
         }
         }  
         stage('Front-end') {
-            agent { label master } 
+            agent { label 'master' } 
+            option {}
                 //docker { 
                   //image 'docker:dind'
                   //image 'node:16.13.1-alpine'
