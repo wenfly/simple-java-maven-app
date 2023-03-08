@@ -24,6 +24,7 @@ pipeline {
            stage('back-end 3'){
              steps{
                sh 'mvn -B -DskipTests clean package'
+               stash includes: 'target/*.jar', name: 'targetjar'
              }
            }
          
