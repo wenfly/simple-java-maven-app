@@ -9,13 +9,33 @@ pipeline {
                   //reuseNode true
                 }
             }
-            steps {
-                echo "steps 1"
-                sh 'mvn -v'
-                sh 'ls -lh ./target'
-                echo "steps 1"
+          stages {
+            stage('back-end 1'){
+             steps{
+               sh 'mvn  -v'
+             }
+
+           }
+           stage('back-end 2'){
+             steps{
+               sh 'ls -lh ./target'
+             }
+           }
+           stage('back-end 3'){
+             steps{
                sh 'mvn -B -DskipTests clean package'
-        }
+             }
+           }
+         
+
+         }
+            //steps {
+            //    echo "steps 1"
+            //    sh 'mvn -v'
+            //    sh 'ls -lh ./target'
+            //    echo "steps 1"
+            //   sh 'mvn -B -DskipTests clean package'
+            //}
         }  
         stage('Front-end') {
             agent { label 'master' } 
