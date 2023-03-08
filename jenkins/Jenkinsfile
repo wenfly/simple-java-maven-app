@@ -20,7 +20,7 @@ pipeline {
         stage('Front-end') {
             agent {
                 docker { 
-                  image 'docker:latest'
+                  image 'docker:git'
                   //image 'node:16.13.1-alpine'
                 }
             }
