@@ -9,16 +9,14 @@ pipeline {
                   //reuseNode true
                 }
             }
-           // steps {
+            steps {
                 echo "steps 1"
                 sh 'mvn -v'
                 sh 'ls -lh'
-            //}
-            //steps {
                 echo "steps 1"
                sh 'mvn -B -DskipTests clean package'
-            //}
         }
+        }  
         stage('Front-end') {
             agent {
                 docker { 
