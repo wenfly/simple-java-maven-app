@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "steps 1"
                 sh 'mvn -v'
-                sh 'ls -lh'
+                sh 'ls -lh ./target'
                 echo "steps 1"
                sh 'mvn -B -DskipTests clean package'
         }
@@ -20,13 +20,13 @@ pipeline {
         stage('Front-end') {
             agent {
                 docker { 
-                  image 'docker:git'
+                  image 'docker:dind'
                   //image 'node:16.13.1-alpine'
                 }
             }
             steps {
                 sh 'docker version'
-                sh 'ls -lh'
+                sh 'ls -lh ./target'
             }
         }
     }
