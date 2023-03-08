@@ -21,6 +21,7 @@ pipeline {
             agent { label 'master' } 
             options { 
               timeout(time: 1, unit: 'HOURS')
+              skipDefaultCheckout()
             }
                 //docker { 
                   //image 'docker:dind'
